@@ -1,5 +1,30 @@
 // Consts
 
+const express = require("express");
+const app = express();
+const port = process.env.PORT || 3000;
+const cron = require("node-cron");
+const https = require("https");
+
+// HTTP
+
+app.get("/", (req, res) => {
+  res.send("Working");
+});
+
+app.listen(port, "0.0.0.0", () => {
+  console.log(`Server listening on port ${port}`);
+});
+
+cron.schedule("*/5 * * * *", () => {
+  https
+    .get(`https://doodle-8v8n.onrender.com`, (res) => {
+    })
+    .on("error", (error) => {
+      console.error("Error in cron job:", error);
+    });
+});
+
 const Discord = require('discord.js');
 const { Client, GatewayIntentBits, EmbedBuilder} = require('discord.js');
 const client = new Client({
@@ -8,8 +33,6 @@ const client = new Client({
 
 const TARGET_CHANNEL_ID = '1336046912029196291';
 const EMOJI_TO_REACT = '🌟';
-
-// In-memory storage for demonstration. For persistence, use a file or database.
 const imageMessagesData = {};
 
 client.on('ready', () => {
@@ -18,8 +41,6 @@ client.on('ready', () => {
 
 client.on('messageCreate', async message => {
   if (message.author.bot) return;
-
-  // Logic for reacting to image messages and storing data
   if (message.channel.id === TARGET_CHANNEL_ID) {
     if (message.attachments.size > 0) {
       let isImage = false;
