@@ -32,7 +32,7 @@ const client = new Client({
     intents: Object.values(GatewayIntentBits).reduce((acc, p) => acc | p, 0),
 });
 
-const TARGET_CHANNEL_ID = '1336046912029196291';
+const TARGET_CHANNEL_ID = '1342617589372686457';
 const EMOJI_TO_REACT = '🌟';
 const imageMessagesData = {};
 
