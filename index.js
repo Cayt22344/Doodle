@@ -5,6 +5,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 const cron = require("node-cron");
 const https = require("https");
+const token = process.env.DISCORD_TOCKEN;
 
 // HTTP
 
