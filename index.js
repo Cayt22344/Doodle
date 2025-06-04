@@ -235,7 +235,7 @@ client.on('messageCreate', async (message) => {
 
 // Tocken
 
-client.login('TOCKEN');
+client.login(TOCKEN);
 
 // Alive Check
 
